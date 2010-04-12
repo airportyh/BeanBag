@@ -1,0 +1,42 @@
+_id
+"89b82886e8955bf15d6eee8a960025d5"
+_rev
+"1-cde66b29c674da699d97cd0c9946ad11"
+
+name
+"Emma"
+
+
+POST /rep/_missing_revs HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+content-length: 75
+
+{"89b82886e8955bf15d6eee8a960025d5":["2-220abfb0271b6ec209b59cbdf35d0bbf"]}HTTP/1.1 200 OK
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Thu, 08 Apr 2010 21:01:30 GMT
+Content-Type: application/json
+Content-Length: 93
+Cache-Control: must-revalidate
+
+{"missing_revs":{"89b82886e8955bf15d6eee8a960025d5":["2-220abfb0271b6ec209b59cbdf35d0bbf"]}}
+
+
+POST /rep/_bulk_docs HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+x-couch-full-commit: false
+Host: mini:5984
+content-length: 234
+
+{"new_edits":false,"docs":[{"_id":"89b82886e8955bf15d6eee8a960025d5","_rev":"2-220abfb0271b6ec209b59cbdf35d0bbf","_deleted":true,"_revisions":{"start":2,"ids":["220abfb0271b6ec209b59cbdf35d0bbf","cde66b29c674da699d97cd0c9946ad11"]}}]}HTTP/1.1 201 Created
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Thu, 08 Apr 2010 21:01:30 GMT
+Content-Type: application/json
+Content-Length: 3
+Cache-Control: must-revalidate
+
+[]

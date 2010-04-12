@@ -1,0 +1,125 @@
+HEAD /reptest/ HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Thu, 08 Apr 2010 02:43:30 GMT
+Content-Type: application/json
+Content-Length: 189
+Cache-Control: must-revalidate
+
+=================================
+
+GET /reptest/ HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Thu, 08 Apr 2010 02:43:30 GMT
+Content-Type: application/json
+Content-Length: 189
+Cache-Control: must-revalidate
+
+{"db_name":"reptest","doc_count":1,"doc_del_count":0,"update_seq":1,"purge_seq":0,"compact_running":false,"disk_size":8277,"instance_start_time":"1270692105628001","disk_format_version":4}
+
+=================================
+
+GET /reptest/_local%2F9c65c362dbc9695c07dca6c8fe2996c4 HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Etag: "0-1"
+Date: Thu, 08 Apr 2010 02:43:30 GMT
+Content-Type: application/json
+Content-Length: 426
+Cache-Control: must-revalidate
+
+{"_id":"_local/9c65c362dbc9695c07dca6c8fe2996c4","_rev":"0-1","session_id":"6bfbf035724e7db85ba2c1d557e2b3a1","source_last_seq":1,"history":[{"session_id":"6bfbf035724e7db85ba2c1d557e2b3a1","start_time":"Thu, 08 Apr 2010 02:02:10 GMT","end_time":"Thu, 08 Apr 2010 02:02:11 GMT","start_last_seq":0,"end_last_seq":1,"recorded_seq":1,"missing_checked":0,"missing_found":1,"docs_read":1,"docs_written":1,"doc_write_failures":0}]}
+
+==================================
+
+POST /reptest/_missing_revs HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+content-length: 75
+
+{"89b82886e8955bf15d6eee8a96000a8a":["1-e7f087cef39f9935fc8f6749628a24cd"]}HTTP/1.1 200 OK
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Thu, 08 Apr 2010 02:43:30 GMT
+Content-Type: application/json
+Content-Length: 93
+Cache-Control: must-revalidate
+
+{"missing_revs":{"89b82886e8955bf15d6eee8a96000a8a":["1-e7f087cef39f9935fc8f6749628a24cd"]}}
+
+====================================
+
+POST /reptest/_bulk_docs HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+x-couch-full-commit: false
+Host: mini:5984
+content-length: 198
+
+{"new_edits":false,"docs":[{"_id":"89b82886e8955bf15d6eee8a96000a8a","_rev":"1-e7f087cef39f9935fc8f6749628a24cd","name":"Marty","_revisions":{"start":1,"ids":["e7f087cef39f9935fc8f6749628a24cd"]}}]}HTTP/1.1 201 Created
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Thu, 08 Apr 2010 02:43:30 GMT
+Content-Type: application/json
+Content-Length: 3
+Cache-Control: must-revalidate
+
+[]
+
+====================================
+
+POST /reptest/_ensure_full_commit HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+content-length: 4
+
+trueHTTP/1.1 201 Created
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Thu, 08 Apr 2010 02:43:30 GMT
+Content-Type: application/json
+Content-Length: 53
+Cache-Control: must-revalidate
+
+{"ok":true,"instance_start_time":"1270692105628001"}
+
+=========================================
+
+PUT /reptest/_local%2F9c65c362dbc9695c07dca6c8fe2996c4 HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+x-couch-full-commit: false
+Host: mini:5984
+content-length: 708
+
+{"_id":"_local/9c65c362dbc9695c07dca6c8fe2996c4","_rev":"0-1","session_id":"01535eacce3c37fa143ae056c6c63d67","source_last_seq":2,"history":[{"session_id":"01535eacce3c37fa143ae056c6c63d67","start_time":"Thu, 08 Apr 2010 02:43:30 GMT","end_time":"Thu, 08 Apr 2010 02:43:30 GMT","start_last_seq":1,"end_last_seq":2,"recorded_seq":2,"missing_checked":0,"missing_found":1,"docs_read":1,"docs_written":1,"doc_write_failures":0},{"session_id":"6bfbf035724e7db85ba2c1d557e2b3a1","start_time":"Thu, 08 Apr 2010 02:02:10 GMT","end_time":"Thu, 08 Apr 2010 02:02:11 GMT","start_last_seq":0,"end_last_seq":1,"recorded_seq":1,"missing_checked":0,"missing_found":1,"docs_read":1,"docs_written":1,"doc_write_failures":0}]}HTTP/1.1 201 Created
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Location: http://mini:5984/reptest/_local/9c65c362dbc9695c07dca6c8fe2996c4
+Etag: "0-2"
+Date: Thu, 08 Apr 2010 02:43:30 GMT
+Content-Type: application/json
+Content-Length: 71
+Cache-Control: must-revalidate
+
+{"ok":true,"id":"_local/9c65c362dbc9695c07dca6c8fe2996c4","rev":"0-2"}
+
+===================================================
