@@ -12,6 +12,10 @@ function describeFor(storageType){
         .should('have seq', function(){
             expect(this.db.seq()).toBe(0)
         })
+        .it('should convert id to string when put', function(){
+            this.db.put(1, {name: 'Frodo'})
+            expect(this.db.get(1)._id).toBe('1')
+        })
         .it('should up seq when put', function(){
             this.db.put(1, {name: 'Frodo'})
             expect(this.db.seq()).toBe(1)
@@ -26,7 +30,7 @@ function describeFor(storageType){
         .it('should get back when put', function(){
             this.db.put(1, {name: 'Frodo'})
             var obj = this.db.get(1)
-            expect(obj._id).toBe(1)
+            expect(obj._id).toBe('1')
             expect(obj.name).toBe('Frodo')
         })
         .should('delete', function(){
@@ -51,7 +55,7 @@ function describeFor(storageType){
             result.rows.length == 1
             var row = result.rows[0]
             expect(row.id).toBe(0)
-            expect(row.key).toBe(1)
+            expect(row.key).toBe('1')
             expect(row.value).toBe('Frodo')
         })
         .should('give revs', function(){
@@ -88,7 +92,9 @@ function describeFor(storageType){
             var changes = this.db.changes()
             var change = changes.results[0]
             expect(changes.last_seq).toBe(1)
+            expect(typeof change.seq).toBe('number')
             expect(change.seq).toBe(1)
+            expect(typeof change.id).toBe('string')
             expect(change.id).toBe(obj._id)
             expect(change.changes[0].rev).toBe(obj._rev)
         })

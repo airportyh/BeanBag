@@ -10,45 +10,79 @@ function clone(obj){
         ret[key] = obj[key]
     return ret
 }
-function callAPI(url, method, param, callback, context){
-    function _callback(){
-        if (this.readyState == 4){
-            var result
-            try{
-                result = JSON.parse(this.responseText)
-            }catch(e){
-                console.log('Parse JSON failed: ' + this.responseText)
-                result = null
+
+Couch = function Couch(options){
+    if (options.url)
+        this.baseUrl = options.url
+    else{
+        this.name = options.name
+        this.host = options.host || 'localhost'
+        this.port = options.port || 5984
+        this.baseUrl = 'http://' + this.host + ':' + this.port + '/' + this.name + '/'
+    }
+}
+Couch.prototype = {
+    get: function(id, params, callback, context){
+        var qs = this.qs(params)
+        console.log('GET' + id + ' qs: ' + qs)
+        this.request('GET', id + qs, params, callback, context)
+    },
+    post: function(id, doc, callback, context){
+        this.request('POST', id, JSON.stringify(doc), callback, context)
+    },
+    put: function(id, doc, callback, context){
+        this.request('PUT', id, JSON.stringify(doc), callback, context)
+    },
+    'delete': function(doc, callback, context){
+        this.request('DELETE', doc._id + '?rev=' + doc._rev, null, callback, context)
+    },
+    view: function(viewPath, params, callback, context){
+        this.get(this.expandViewPath(viewPath, params), callback, context)
+    },  
+    drop: function(callback, context){
+        this.request('DELETE', '', null, callback, context)
+    },
+    create: function(callback, context){
+        this.request('PUT', '', null, callback, context)
+    },
+    qs: function(params){
+        if (!params) return ''
+        return '?' + keys(params).map(function(key){return key + '=' + encodeURI(params[key])}).join('&')
+    },
+    expandViewPath: function expandViewPath(viewPath, params){
+      var parts = viewPath.split('/')
+      var viewPath = '_design/' + parts[0] + '/_view/' + parts[1]
+      viewPath += this.qs(params)
+      //sys.debug('viewPath: ' + viewPath)
+      return viewPath
+    },
+    request: function request(verb, uri, data, callback, context){
+        function _callback(){
+            if (this.readyState == 4){
+                var result
+                try{
+                    result = JSON.parse(this.responseText)
+                }catch(e){
+                    console.log('Parse JSON failed: ' + this.responseText)
+                    result = null
+                }
+                
+                callback.call(context, result)
+            }else if(this.readyState == 1){
+                this.setRequestHeader('Accept', 'application/json')
             }
-            callback.call(context, result)
-        }else if(this.readyState == 1){
-            this.setRequestHeader('Accept', 'application/json')
         }
+
+        var xhr = new XMLHttpRequest()
+        xhr.onreadystatechange = callback ? _callback : null
+        var url = this.baseUrl + uri
+        console.log(verb + ': ' + url)
+        xhr.open(verb, url, true)
+        xhr.send(data)
     }
     
-    var xhr = new XMLHttpRequest()
-    xhr.onreadystatechange = callback ? _callback : null
-    xhr.open(method, url, true)
-    xhr.send(param)
 }
 
-API = function(url){
-    this.url = url
-}
-API.prototype = {
-    get: function(uri, callback, context){
-        callAPI(this.url + uri, 'GET', null, callback, context)
-    },
-    put: function(uri, param, callback, context){
-        callAPI(this.url + uri, 'PUT', JSON.stringify(param), callback, context)
-    },
-    post: function(uri, param, callback, context){
-        callAPI(this.url + uri, 'POST', JSON.stringify(param), callback, context)
-    },
-    'delete': function(uri, callback, context){
-        callAPI(this.url + uri, 'DELETE', null, callback, context)
-    }
-}
 
 
 
@@ -77,10 +111,13 @@ LocalStorageDB = function LocalStorageDB(){
     this.__initChanges()
 }
 LocalStorageDB.prototype = {
-    put: function(id, obj){
-        obj._id = String(id)
+    put: function(id, obj, newEdits){
+        if (newEdits === undefined) newEdits = true
+        else newEdits = false
+        id = String(id)
+        obj._id = id
         var org = this.get(id)
-        if (org && (org._rev != obj._rev))
+        if (newEdits && org && (org._rev != obj._rev))
             throw new Error('Record was modified before you tried to saved it.')
         var ver = obj._rev ? parseInt(obj._rev.split('-')[0]) + 1 : 1
         delete obj._rev
@@ -95,15 +132,19 @@ LocalStorageDB.prototype = {
         }]
         changes[id] = change
         this.__changes(changes)
+        
     },
     get: function(id){
         var obj = this.store[id]
+        console.log(id + ': ' + obj)
         return obj ? JSON.parse(obj): obj
     },
-    'delete': function(obj){
+    'delete': function(obj, newEdits){
+        if (newEdits === undefined) newEdits = true
+        else newEdits = false
         var id = obj._id
         var org = this.get(id)
-        if (obj._rev != org._rev)
+        if (newEdits && org && (obj._rev != org._rev))
             throw new Error('Record was modified before you tried to delete it.')
         delete this.store[id]
         var ver = obj._rev ? parseInt(obj._rev.split('-')[0]) + 1 : 1
@@ -225,16 +266,16 @@ LocalStorageDB.prototype = {
         }
         return ret
     },
-    replicateTo: function(couchUrl){
+    replicateTo: function(couchUrl, callback, context){
         var escape = encodeURIComponent
-        api = new API(couchUrl)
+        var couch = new Couch({url: couchUrl})
         console.log('replicateTo(' + couchUrl + ')')
         var repID = '_local/' + MD5(location.host + ':' + couchUrl)
         var sessionID = MD5(String(new Date().getTime()))
-        api.get('', function(db){
-            console.log('update_seq: ' + db.update_seq)
+        couch.get('', null, function(db){
+            console.log('db: ' + JSON.stringify(db))
             console.log('repID: ' + repID)
-            api.get(escape(repID), function(repInfo){
+            couch.get(escape(repID), null, function(repInfo){
                 console.log(JSON.stringify(repInfo))
                 if (repInfo.error == 'not_found'){
                     refInfo = {
@@ -248,22 +289,62 @@ LocalStorageDB.prototype = {
                 
                 console.log('changes to replicate: ' + JSON.stringify(missingRevs))
                 if (keys(missingRevs).length == 0) return
-                api.post('_missing_revs', missingRevs, function(reply){
+                couch.post('_missing_revs', missingRevs, function(reply){
                     //console.log('replied missing revs: ' + JSON.stringify(reply))
                     missingRevs = reply.missing_revs
                     console.log('Missing Revs: ' + JSON.stringify(missingRevs))
                     var bulkDocs = this.createBulkDocs(missingRevs)
                     console.log('bulk docs: ' + JSON.stringify(bulkDocs))
-                    api.post('_bulk_docs', bulkDocs, function(reply){
-                        api.post('_ensure_full_commit', 'true', function(reply){
+                    couch.post('_bulk_docs', bulkDocs, function(reply){
+                        couch.post('_ensure_full_commit', 'true', function(reply){
+                            console.log('here')
                             if (reply.ok){
-                                api.put(escape(repID), repInfo, function(reply){
+                                couch.put(escape(repID), repInfo, function(reply){
+                                    /*
                                     if (reply.ok) alert('Replication succeeded!')
-                                    else alert('Replication failed.')
+                                    else alert('Replication failed.')*/
                                 })
+                                
                             }
+                            if (callback)
+                                callback.call(context)
                         }, this)
                     }, this)
+                }, this)
+            }, this)
+        }, this)
+    },
+    replicateFrom: function(couchUrl, callback, context){
+        var couch = new Couch({url: couchUrl})
+        couch.get('_changes', {
+            style: 'all_docs',
+            heartbeat: 10000,
+            since: this.seq(),
+            feed: 'normal'
+        }, function(changes){
+            var lastSeq = changes.last_seq
+            var results = changes.results
+            results.forEach(function(change){
+                couch.get(change.id, {
+                    open_revs: JSON.stringify(change.changes.map(function(rev){
+                        return rev.rev
+                    })),
+                    revs: true,
+                    latest: true
+                }, function(resp){
+                    var doc = resp[0].ok
+                    if (doc){
+                        if (doc._deleted){
+                            this['delete'](doc, false)
+                        }else{
+                            this.put(doc._id, doc, false)
+                        }
+                        this.store.seq = lastSeq
+                    }else{
+                        throw new Error("Failed to got change for doc.")
+                    }
+                    if (callback)
+                        callback.call(context)
                 }, this)
             }, this)
         }, this)
