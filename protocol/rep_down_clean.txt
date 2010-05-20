@@ -1,0 +1,650 @@
+GET /tasks/ HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:45 GMT
+Content-Type: application/json
+Content-Length: 198
+Cache-Control: must-revalidate
+
+{"db_name":"tasks","doc_count":137,"doc_del_count":392,"update_seq":2943,"purge_seq":0,"compact_running":false,"disk_size":74772580,"instance_start_time":"1273017367859152","disk_format_version":4}
+GET /tasks/b27d7cb0c6bc5a29db6e134fb9f8b683?open_revs=["2-39ab3ee296a3672a4b0348dbad2773d5"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+GET /tasks/_design%2Ftask?open_revs=["2-f271d326f5d9635dce73c8c130a4accf"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:45 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+12e
+{"ok":{"_id":"b27d7cb0c6bc5a29db6e134fb9f8b683","_rev":"2-39ab3ee296a3672a4b0348dbad2773d5","type":"Task","name":"setup backup/dup pictures/videos","tags":["home"],"notes":"","username":"airportyh","_revisions":{"start":2,"ids":["39ab3ee296a3672a4b0348dbad2773d5","1cedad3b61e3940a5adb8c1fc24b38e1"]}}}
+1
+]
+1
+
+
+0
+
+HTTP/1.1 301 Moved Permanently
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Location: http://mini:5984/tasks/_design/task?open_revs=["2-f271d326f5d9635dce73c8c130a4accf"]&revs=true&latest=true
+Date: Sun, 09 May 2010 20:00:45 GMT
+Content-Length: 0
+
+GET /tasks/_design/task?open_revs=["2-f271d326f5d9635dce73c8c130a4accf"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+GET /tasks/24fc0f77b68d0de3fcebdf82d603a8c5?open_revs=["2-37c68d652cfefec4a704d42d060ce288"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:46 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+145
+{"ok":{"_id":"_design/task","_rev":"2-f271d326f5d9635dce73c8c130a4accf","language":"javascript","views":{"list":{"map":"\nfunction (doc) {\n    if (doc.type == \"Task\") {\n        emit(doc.username, doc);\n    }\n}\n"}},"_revisions":{"start":2,"ids":["f271d326f5d9635dce73c8c130a4accf","e86045b77254235f3fc42b06a98a8668"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/551d543c7bb4999d1146aca5b5c42423?open_revs=["2-4623235fc2d462843d70afb31d775d7e"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+GET /tasks/b29b150c39ba36e67c45b9f2e7876315?open_revs=["2-2b47f64bdccbcefb51c9b404c01a9fd0"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:46 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"24fc0f77b68d0de3fcebdf82d603a8c5","_rev":"2-37c68d652cfefec4a704d42d060ce288","_deleted":true,"_revisions":{"start":2,"ids":["37c68d652cfefec4a704d42d060ce288","ca4115bfa05d42cda711b3e89ca5a8d8"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/0fb8f3cb810000abf09323e04179351f?open_revs=["2-a901cbb59d8f1e7ea45a5baa54d2e446"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:46 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"551d543c7bb4999d1146aca5b5c42423","_rev":"2-4623235fc2d462843d70afb31d775d7e","_deleted":true,"_revisions":{"start":2,"ids":["4623235fc2d462843d70afb31d775d7e","b1db9b220a3f4f277d2192fea9d2e375"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/7ba64435863652b414d638dd303b08b8?open_revs=["1-ee85d96750ab9f770ff816caa6f98b9d"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:46 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"b29b150c39ba36e67c45b9f2e7876315","_rev":"2-2b47f64bdccbcefb51c9b404c01a9fd0","_deleted":true,"_revisions":{"start":2,"ids":["2b47f64bdccbcefb51c9b404c01a9fd0","4fae0eac67fc32207ef494b26c77e5d8"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/b230f6fbedfcb8e645071af49ab5fe84?open_revs=["4-ad848a3333f9c2c7118c15ee6b98fbb6"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:46 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"0fb8f3cb810000abf09323e04179351f","_rev":"2-a901cbb59d8f1e7ea45a5baa54d2e446","_deleted":true,"_revisions":{"start":2,"ids":["a901cbb59d8f1e7ea45a5baa54d2e446","96555f6559b48e1fe146a2bc997f00b5"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/0ca36ebaac2206da1e71e1626d8501e9?open_revs=["2-93b25828d83079e66b95fd14f8c1184e"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:46 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+101
+{"ok":{"_id":"7ba64435863652b414d638dd303b08b8","_rev":"1-ee85d96750ab9f770ff816caa6f98b9d","type":"Task","name":"weilai belly support","tags":["errand"],"notes":"","username":"airportyh","_revisions":{"start":1,"ids":["ee85d96750ab9f770ff816caa6f98b9d"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/d916bbb0b45eb2a4bdf9b21c7cfd80d9?open_revs=["2-24ef182ea4fdeee3ee115863fd249846"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:46 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+11a
+{"ok":{"_id":"b230f6fbedfcb8e645071af49ab5fe84","_rev":"4-ad848a3333f9c2c7118c15ee6b98fbb6","_deleted":true,"_revisions":{"start":4,"ids":["ad848a3333f9c2c7118c15ee6b98fbb6","2da9be5d49efd724dcc83ae3252526e8","0cb2abb4d5b9536ab7adbfc823fe8a84","86b4301d565896a9afe2bdd1a4ddfd63"]}}}
+1
+]
+1
+
+
+0
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:47 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"0ca36ebaac2206da1e71e1626d8501e9","_rev":"2-93b25828d83079e66b95fd14f8c1184e","_deleted":true,"_revisions":{"start":2,"ids":["93b25828d83079e66b95fd14f8c1184e","d12047dfefa3ee3e290e85b2c3036c0e"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/287e82cb20fe4286e7ca01b7de2d92c1?open_revs=["2-739fdc3ff9ed2b63ebf3f7f84b62f2cf"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+GET /tasks/7ce559d68f113c4fcdbdc8d61049d5a7?open_revs=["3-bf98fde8cdbab3140cf102043397e4f5"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:47 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"d916bbb0b45eb2a4bdf9b21c7cfd80d9","_rev":"2-24ef182ea4fdeee3ee115863fd249846","_deleted":true,"_revisions":{"start":2,"ids":["24ef182ea4fdeee3ee115863fd249846","2dac2eceaeb1526a0f38e7e7b69a85d3"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/53efc14ebc95a5bd4832d2c2f133e9f0?open_revs=["2-c99ffd34f69077deee282c69ba3d8ed4"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:47 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"287e82cb20fe4286e7ca01b7de2d92c1","_rev":"2-739fdc3ff9ed2b63ebf3f7f84b62f2cf","_deleted":true,"_revisions":{"start":2,"ids":["739fdc3ff9ed2b63ebf3f7f84b62f2cf","89e582dcf467ce278f634335c8408a68"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/e4be037a63aac93063b50ae9149a1f6f?open_revs=["2-fdfbcb8208e9c235ae42aa9a62d093c8"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+GET /tasks/0bfa9aadd94f7d216e7065bb4fcda76f?open_revs=["5-9bf0bc40ebf6b581df13b2722a3ddb05"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:47 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+f7
+{"ok":{"_id":"7ce559d68f113c4fcdbdc8d61049d5a7","_rev":"3-bf98fde8cdbab3140cf102043397e4f5","_deleted":true,"_revisions":{"start":3,"ids":["bf98fde8cdbab3140cf102043397e4f5","1a79187f6a61392440628f344f54c8a5","69a4e2b9ba15d8962bdbb65dcdc9e032"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/449e612558998d93fff4fc364c5980a8?open_revs=["2-89c1ac4a10c6c1e98fd60e177c7b21f8"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+GET /tasks/c884e9a675ce4c368a4e1bed94a6a222?open_revs=["3-f3c3445527a1be92577790ac92fd8ddd"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:47 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"53efc14ebc95a5bd4832d2c2f133e9f0","_rev":"2-c99ffd34f69077deee282c69ba3d8ed4","_deleted":true,"_revisions":{"start":2,"ids":["c99ffd34f69077deee282c69ba3d8ed4","9a90171a8578369ef9401e19561cabd9"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/e63b838f0e01110c30411793cf053c1d?open_revs=["2-0276bd84e2fabeb25ae55d57f25e42a4"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:47 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"e4be037a63aac93063b50ae9149a1f6f","_rev":"2-fdfbcb8208e9c235ae42aa9a62d093c8","_deleted":true,"_revisions":{"start":2,"ids":["fdfbcb8208e9c235ae42aa9a62d093c8","6afb407f2923c5cd19fbe6fda6ef9fb7"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/b4032e07da2fdf58f8f00e2e783729ed?open_revs=["2-46803f2921f52f1e8402440367ddaf59"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+13d
+{"ok":{"_id":"0bfa9aadd94f7d216e7065bb4fcda76f","_rev":"5-9bf0bc40ebf6b581df13b2722a3ddb05","_deleted":true,"_revisions":{"start":5,"ids":["9bf0bc40ebf6b581df13b2722a3ddb05","37c28af8478223ef9189338b0b7cf2e0","6bbef06f4b732bdf887d9ef520021aed","cd7d9a287e439b0d3e22449a2b997eb4","659573083fc936dfc1bc0b2c3b9aa0e4"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/07268b439c13a5c5f0fea613948bf56c?open_revs=["3-cd450707212dd3660c96ea2ae415ff54"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"449e612558998d93fff4fc364c5980a8","_rev":"2-89c1ac4a10c6c1e98fd60e177c7b21f8","_deleted":true,"_revisions":{"start":2,"ids":["89c1ac4a10c6c1e98fd60e177c7b21f8","8a8cf59c17d6860f18cd37e62116cd90"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/7b919ccc4d7339a8ced135a4b9522b49?open_revs=["1-4807045234fe4550a5cbc5537c17ad4d"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+f7
+{"ok":{"_id":"c884e9a675ce4c368a4e1bed94a6a222","_rev":"3-f3c3445527a1be92577790ac92fd8ddd","_deleted":true,"_revisions":{"start":3,"ids":["f3c3445527a1be92577790ac92fd8ddd","14541c3bfe097edc49743adca78e2826","18ca911d2c71336a635c7e030ac14f7e"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/880d141aa52426454aac23786b87e313?open_revs=["2-d4b9e534fbd2f76e39f6d9d00c53a710"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"e63b838f0e01110c30411793cf053c1d","_rev":"2-0276bd84e2fabeb25ae55d57f25e42a4","_deleted":true,"_revisions":{"start":2,"ids":["0276bd84e2fabeb25ae55d57f25e42a4","49434493237cd1471ebef80a09661906"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/9d282da733e944f3ca98b75ac6ad928b?open_revs=["2-c6097ccf5b11b2f574307010c1375db6"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"b4032e07da2fdf58f8f00e2e783729ed","_rev":"2-46803f2921f52f1e8402440367ddaf59","_deleted":true,"_revisions":{"start":2,"ids":["46803f2921f52f1e8402440367ddaf59","392929e0074a69c12ae62516b7cba368"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/6d6ef9ac933d751e788cd8f75be7a5e6?open_revs=["1-b0f2bbb5b241aaa73044ad68b7d3cd14"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+f7
+{"ok":{"_id":"07268b439c13a5c5f0fea613948bf56c","_rev":"3-cd450707212dd3660c96ea2ae415ff54","_deleted":true,"_revisions":{"start":3,"ids":["cd450707212dd3660c96ea2ae415ff54","e483adf04f3d9ae6f63cfb879e278ccc","3da836050a5bec6e5a8863969500923c"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/3579a463419cd6aedb43f7faf01e0f98?open_revs=["1-bd6f03edfa5fef9f3465df9a69d145aa"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+fc
+{"ok":{"_id":"7b919ccc4d7339a8ced135a4b9522b49","_rev":"1-4807045234fe4550a5cbc5537c17ad4d","type":"Task","name":"buy yobaby eggs","tags":["errand"],"notes":"","username":"airportyh","_revisions":{"start":1,"ids":["4807045234fe4550a5cbc5537c17ad4d"]}}}
+1
+]
+1
+
+
+0
+
+GET /tasks/21cc94341d0fa8200873de8fe26c4654?open_revs=["2-98c155856dc2ab785a706593f7f16de8"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"880d141aa52426454aac23786b87e313","_rev":"2-d4b9e534fbd2f76e39f6d9d00c53a710","_deleted":true,"_revisions":{"start":2,"ids":["d4b9e534fbd2f76e39f6d9d00c53a710","c18c6656981f04f4c651f5e01d7d8cd2"]}}}
+1
+]
+1
+
+
+0
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"9d282da733e944f3ca98b75ac6ad928b","_rev":"2-c6097ccf5b11b2f574307010c1375db6","_deleted":true,"_revisions":{"start":2,"ids":["c6097ccf5b11b2f574307010c1375db6","cd411fddcaea03eddd00fcc245cb7397"]}}}
+1
+]
+1
+
+
+0
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+100
+{"ok":{"_id":"6d6ef9ac933d751e788cd8f75be7a5e6","_rev":"1-b0f2bbb5b241aaa73044ad68b7d3cd14","type":"Task","name":"weilai's problems","tags":["todo-app"],"notes":"","username":"airportyh","_revisions":{"start":1,"ids":["b0f2bbb5b241aaa73044ad68b7d3cd14"]}}}
+1
+]
+1
+
+
+0
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:48 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+f5
+{"ok":{"_id":"3579a463419cd6aedb43f7faf01e0f98","_rev":"1-bd6f03edfa5fef9f3465df9a69d145aa","type":"Task","name":"show-value","tags":["form"],"notes":"","username":"airportyh","_revisions":{"start":1,"ids":["bd6f03edfa5fef9f3465df9a69d145aa"]}}}
+1
+]
+1
+
+
+0
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:00:49 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+d4
+{"ok":{"_id":"21cc94341d0fa8200873de8fe26c4654","_rev":"2-98c155856dc2ab785a706593f7f16de8","_deleted":true,"_revisions":{"start":2,"ids":["98c155856dc2ab785a706593f7f16de8","b2173eb259e94376ef9f22737ae8934c"]}}}
+1
+]
+1
+
+
+0
+

@@ -1,0 +1,108 @@
+GET /simple/_local%2F9bafa18419c3b7923868f418e673d04a HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 404 Object Not Found
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:08:43 GMT
+Content-Type: application/json
+Content-Length: 41
+Cache-Control: must-revalidate
+
+{"error":"not_found","reason":"missing"}
+
+
+GET /simple/_changes?style=all_docs&heartbeat=10000&since=0&feed=normal HTTP/1.1
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:08:43 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+d
+{"results":[
+
+6a
+{"seq":1,"id":"bc296da3e80d4a5aee687444e3f0df70","changes":[{"rev":"1-cde66b29c674da699d97cd0c9946ad11"}]}
+12
+
+],
+"last_seq":1}
+
+1
+
+
+0
+
+
+
+GET /simple/bc296da3e80d4a5aee687444e3f0df70?open_revs=["1-cde66b29c674da699d97cd0c9946ad11"]&revs=true&latest=true HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:08:44 GMT
+Content-Type: application/json
+Cache-Control: must-revalidate
+
+1
+[
+af
+{"ok":{"_id":"bc296da3e80d4a5aee687444e3f0df70","_rev":"1-cde66b29c674da699d97cd0c9946ad11","name":"Emma","_revisions":{"start":1,"ids":["cde66b29c674da699d97cd0c9946ad11"]}}}
+1
+]
+1
+
+
+0
+
+
+
+POST /simple/_ensure_full_commit?seq=1 HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+Host: mini:5984
+content-length: 4
+
+trueHTTP/1.1 201 Created
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Date: Sun, 09 May 2010 20:08:44 GMT
+Content-Type: application/json
+Content-Length: 53
+Cache-Control: must-revalidate
+
+{"ok":true,"instance_start_time":"1273435535500023"}
+
+
+
+
+PUT /simple/_local%2F9bafa18419c3b7923868f418e673d04a HTTP/1.1
+Accept-Encoding: gzip
+Accept: application/json
+User-Agent: CouchDB/0.11.0
+x-couch-full-commit: false
+Host: mini:5984
+content-length: 412
+
+{"_id":"_local/9bafa18419c3b7923868f418e673d04a","session_id":"a54017ca0de9a7accc958a10863ccc42","source_last_seq":1,"history":[{"session_id":"a54017ca0de9a7accc958a10863ccc42","start_time":"Sun, 09 May 2010 20:08:44 GMT","end_time":"Sun, 09 May 2010 20:08:44 GMT","start_last_seq":0,"end_last_seq":1,"recorded_seq":1,"missing_checked":0,"missing_found":1,"docs_read":1,"docs_written":1,"doc_write_failures":0}]}HTTP/1.1 201 Created
+Server: CouchDB/0.10.1 (Erlang OTP/R13B)
+Location: http://mini:5984/simple/_local/9bafa18419c3b7923868f418e673d04a
+Etag: "0-1"
+Date: Sun, 09 May 2010 20:08:44 GMT
+Content-Type: application/json
+Content-Length: 71
+Cache-Control: must-revalidate
+
+{"ok":true,"id":"_local/9bafa18419c3b7923868f418e673d04a","rev":"0-1"}
